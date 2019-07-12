@@ -1,0 +1,17 @@
+platformioメモ
+
+【ビルドはできるのに書き込めないとき】
+自分が作ったプロジェクトのフォルダの".pioenvs\nucleo_f446re\firmware.bin"をマイコン内にコピペする
+
+【mbedのライブラリを使う方法】
+・方法1
+「PIO Home」タブを選択し、左の欄から「Libraries」を開く
+「Search libraries...」の検索窓でほしいライブラリを検索してダウンロード
+・方法2:
+プロジェクトのフォルダにある「platformio.ini」を開く
+「lib_deps = <ライブラリ名>」と追記して保存(複数書くこともできる)
+自分のコードをビルドする
+例：lib_deps =  BNO055
+		LidarLite
+・取り込んだライブラリはプロジェクトフォルダの".piolibdeps"内に書き込まれる
+

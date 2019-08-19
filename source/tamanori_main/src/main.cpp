@@ -1,4 +1,4 @@
-// ƒƒCƒ“ŠÖ”
+// ãƒ¡ã‚¤ãƒ³é–¢æ•°
 #include "common.h"
 
 void Initialize();
@@ -15,13 +15,13 @@ int main() {
 
 
 void Initialize(){
-  button.fall(Push);  // ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ—
-  button.rise(Pull);  // ƒ{ƒ^ƒ“‚ðˆø‚¢‚½‚Æ‚«‚Ìˆ—
+  button.fall(Push);  // ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®å‡¦ç†
+  button.rise(Pull);  // ãƒœã‚¿ãƒ³ã‚’å¼•ã„ãŸã¨ãã®å‡¦ç†
 
   motor_init();
   encoder_init();
 
-  pc.attach(Keyboard, Serial::RxIrq); // ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ—
+  pc.attach(Keyboard, Serial::RxIrq); // ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®å‡¦ç†
 }
 
 void MainLoop(){

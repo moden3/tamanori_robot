@@ -1,8 +1,8 @@
-// ‘S‚Ä‚Ìcppƒtƒ@ƒCƒ‹‚ÉƒCƒ“ƒNƒ‹[ƒh‚·‚é
-// ŠO•”•Ï”‚âƒtƒ@ƒCƒ‹ŠÔ‚ÅŽg—p‚·‚éŠÖ”‚ð‹Lq
+// å…¨ã¦ã®cppãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹
+// å¤–éƒ¨å¤‰æ•°ã‚„ãƒ•ã‚¡ã‚¤ãƒ«é–“ã§ä½¿ç”¨ã™ã‚‹é–¢æ•°ã‚’è¨˜è¿°
 
-#ifndef _COMMON_H_  // ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ðd•¡‚µ‚ÄƒCƒ“ƒNƒ‹[ƒh
-#define _COMMON_H_  // ‚µ‚È‚¢‚½‚ß‚Ìifdef•¶
+#ifndef _COMMON_H_  // ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é‡è¤‡ã—ã¦ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
+#define _COMMON_H_  // ã—ãªã„ãŸã‚ã®ifdefæ–‡
 
 #include <mbed.h>
 
@@ -18,7 +18,7 @@ void motor_init();
 void motorspeed(double[3]);
 
 // encoder.cpp
-// ƒGƒ“ƒR[ƒ_‚ÌƒTƒ“ƒvƒŠƒ“ƒOŽüŠú[ƒÊs]
+// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æœŸ[Î¼s]
 #define SUMPLING_TIME_US 50000
 extern int count_now[3];
 extern int delta_now[3];

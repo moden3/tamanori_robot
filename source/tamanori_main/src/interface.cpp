@@ -1,26 +1,26 @@
-// �L�[�{�[�h���͂�}�C�R���̃��[�U�[�{�^���Ɋւ���֐�
+// キーボード入力やマイコンのユーザーボタンに関する関数
 #include "common.h"
 
-DigitalOut myled1(LED1);  // �}�C�R����LED
-Serial pc(USBTX, USBRX);  // PC�Ƃ̃V���A���ʐM
-InterruptIn button(USER_BUTTON);  // ���[�U�[�{�^���̐ݒ�
+DigitalOut myled1(LED1);  // マイコンのLED
+Serial pc(USBTX, USBRX);  // PCとのシリアル通信
+InterruptIn button(USER_BUTTON);  // ユーザーボタンの設定
 
-// ���[�U�[�{�^�����������Ƃ��ɌĂяo�����֐�
+// ユーザーボタンを押したときに呼び出される関数
 void Push(){
   pc.printf("ON\n");
   myled1 = 1;
 }
 
-// ���[�U�[�{�^�����������Ƃ��ɌĂяo�����֐�
+// ユーザーボタンを引いたときに呼び出される関数
 void Pull(){
   pc.printf("OFF\n");
   myled1 = 0;
 }
 
-// �L�[�{�[�h����͂����Ƃ��ɌĂяo�����֐�
+// キーボードを入力したときに呼び出される関数
 void Keyboard(){
   char msg;
-  msg = pc.getc();  // �L�[�{�[�h�̏����擾
+  msg = pc.getc();  // キーボードの情報を取得
   static double duty[3]={0,0,0};
   switch(msg){
     case '1':

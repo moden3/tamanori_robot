@@ -1,8 +1,8 @@
-// ƒGƒ“ƒR[ƒ_‚Ì“Ç‚İæ‚è‚ÉŠÖ‚·‚éŠÖ”‚Æ•Ï”
+// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®èª­ã¿å–ã‚Šã«é–¢ã™ã‚‹é–¢æ•°ã¨å¤‰æ•°
 #include "common.h"
 
-// M†ƒsƒ“‚Ìİ’è
-// ƒGƒ“ƒR[ƒ_3‚Â(0~2)‚ÌA‘Š‚ÆB‘Š
+// ä¿¡å·ãƒ”ãƒ³ã®è¨­å®š
+// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€3ã¤(0~2)ã®Aç›¸ã¨Bç›¸
 #define EN0A PC_0
 #define EN0B PB_0
 #define EN1A PA_9
@@ -15,28 +15,28 @@ DigitalIn encoder[3][2]={
     {DigitalIn(EN1A),DigitalIn(EN1B)},
     {DigitalIn(EN2A),DigitalIn(EN2B)}
 };
-// A‘Š‚Ì—§‚¿ã‚ª‚è‚ğŒ©‚é
+// Aç›¸ã®ç«‹ã¡ä¸ŠãŒã‚Šã‚’è¦‹ã‚‹
 InterruptIn switchevent[3]={
     InterruptIn(EN0A),
     InterruptIn(EN1A),
     InterruptIn(EN2A)
 };
 
-// ƒ^ƒCƒ}[Š„‚İ
+// ã‚¿ã‚¤ãƒãƒ¼å‰²è¾¼ã¿
 Ticker timer;
 
-// Œ»İ‚ÌƒGƒ“ƒR[ƒ_‚ÌƒJƒEƒ“ƒg”‚ğ‹L˜^
+// ç¾åœ¨ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®ã‚«ã‚¦ãƒ³ãƒˆæ•°ã‚’è¨˜éŒ²
 int count_now[3] = {0,0,0};
-// ‘O‰ñƒTƒ“ƒvƒŠƒ“ƒO‚µ‚½‚Æ‚«‚ÌƒJƒEƒ“ƒg”
+// å‰å›ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã—ãŸã¨ãã®ã‚«ã‚¦ãƒ³ãƒˆæ•°
 int count_old[3] = {0,0,0};
 
-// ƒJƒEƒ“ƒg”‚Ì·•ª‚ğ‹L˜^
+// ã‚«ã‚¦ãƒ³ãƒˆæ•°ã®å·®åˆ†ã‚’è¨˜éŒ²
 int delta_now[3] = {0,0,0};
-// ‰ß‹‚Ì·•ªƒf[ƒ^‚É‘Î‚µ‚ÄŒ»İ‚Ìƒf[ƒ^‚ª‰e‹¿‚·‚éŠ„‡‚ğw’è
+// éå»ã®å·®åˆ†ãƒ‡ãƒ¼ã‚¿ã«å¯¾ã—ã¦ç¾åœ¨ã®ãƒ‡ãƒ¼ã‚¿ãŒå½±éŸ¿ã™ã‚‹å‰²åˆã‚’æŒ‡å®š
 #define STOCK_RATE 0.40
 double delta_stock[3] = {0,0,0};
 
-// A‘Š‚ª—§‚¿ã‚ª‚Á‚½‚Ìˆ—
+// Aç›¸ãŒç«‹ã¡ä¸ŠãŒã£ãŸæ™‚ã®å‡¦ç†
 void en0_rise(){
     if(encoder[0][1]==1)
         count_now[0]++;
@@ -56,7 +56,7 @@ void en2_rise(){
         count_now[2]--;
 }
 
-// A‘Š‚ª—§‚¿‰º‚ª‚Á‚½‚Ìˆ—
+// Aç›¸ãŒç«‹ã¡ä¸‹ãŒã£ãŸæ™‚ã®å‡¦ç†
 void en0_fall(){
     if(encoder[0][1]==1)
         count_now[0]--;
@@ -76,22 +76,22 @@ void en2_fall(){
         count_now[2]++;
 }
 
-// ƒJƒEƒ“ƒg‘¬“x‚ğ‹L˜^
+// ã‚«ã‚¦ãƒ³ãƒˆé€Ÿåº¦ã‚’è¨˜éŒ²
 void calc_speed(){
     for(int i=0;i<3;i++){
-        // ƒJƒEƒ“ƒg”‚Ì·•ª
+        // ã‚«ã‚¦ãƒ³ãƒˆæ•°ã®å·®åˆ†
         delta_now[i] = count_now[i] - count_old[i];
-        // count_old‚ÌXV
+        // count_oldã®æ›´æ–°
         count_old[i] = count_now[i];
-        // ƒJƒEƒ“ƒg‘¬“x‚Ì•½ŠŠ‰»
+        // ã‚«ã‚¦ãƒ³ãƒˆé€Ÿåº¦ã®å¹³æ»‘åŒ–
         delta_stock[i] = (double)delta_now[i]*STOCK_RATE
                         +delta_stock[i]*(1-STOCK_RATE);
     }
-    // §ŒäüŠú‚Ìƒ‹[ƒv
+    // åˆ¶å¾¡å‘¨æœŸã®ãƒ«ãƒ¼ãƒ—
     EncoderLoop();
 }
 
-// ‰Šú‰»—p‚ÌŠÖ”
+// åˆæœŸåŒ–ç”¨ã®é–¢æ•°
 void encoder_init(){
     timer.attach_us(&calc_speed, SUMPLING_TIME_US);
     switchevent[0].rise(en0_rise);
@@ -102,10 +102,10 @@ void encoder_init(){
     //switchevent[2].fall(en2_rise);
 }
 
-// PC•\¦—p‚Ìƒ‚[ƒh
-// 0:•\¦‚È‚µ,1:count_now,2:delta_now,3:delta_stock
+// PCè¡¨ç¤ºç”¨ã®ãƒ¢ãƒ¼ãƒ‰
+// 0:è¡¨ç¤ºãªã—,1:count_now,2:delta_now,3:delta_stock
 int en_mode = 0;
 
-// §ŒäüŠú‚Ìƒ‹[ƒv
+// åˆ¶å¾¡å‘¨æœŸã®ãƒ«ãƒ¼ãƒ—
 void EncoderLoop(){
 }

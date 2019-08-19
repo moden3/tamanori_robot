@@ -27,4 +27,7 @@ extern int en_mode;
 void encoder_init();
 void EncoderLoop();
 
+// anglecontrol.cpp
+void bno_init();
+
 #endif

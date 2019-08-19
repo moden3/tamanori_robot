@@ -20,6 +20,7 @@ void Initialize(){
 
   motor_init();
   encoder_init();
+  bno_init();
 
   pc.attach(Keyboard, Serial::RxIrq); // ボタンを押したときの処理
 }

@@ -25,6 +25,6 @@ extern int delta_now[3];
 extern double delta_stock[3];
 extern int en_mode;
 void encoder_init();
-void EncoderLoop();
+void EncoderLoop();//50000μsおきに実行される　エンコーダの読み取りやそこから制御を与えるコードをかく
 
 #endif

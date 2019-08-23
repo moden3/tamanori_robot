@@ -12,6 +12,7 @@ void bno_init(){
 // 四元数の読み込み
 double quat[4]; // [x,y,z,w]
 double rotvector[4];  // [x,y,z,theta]
+
 void readangle(){
     bno.get_quat();
     quat[0] = bno.quat.x;
@@ -24,3 +25,6 @@ void readangle(){
     rotvector[3] = 2*atan(sqrt(quat[0]*quat[0]+quat[1]*quat[1]+quat[2]*quat[2])/quat[3]);
 }
 
+void spin_ball(){
+    double spinrate = 0.5;
+}

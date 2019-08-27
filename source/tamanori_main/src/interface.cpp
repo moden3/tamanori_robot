@@ -56,9 +56,35 @@ void Keyboard(){
           en_mode = 3;
           break;
         case 3:
+          en_mode = 4;
+          break;
+        case 4:
           en_mode = 0;
           break;
       }
+      break;
+    case 'z':
+      speed_test[0] += 1.0;
+      printf("speed_0 = %.1f", speed_test[0]);
+      break;
+    case 'x':
+      speed_test[0] -= 1.0;
+      printf("speed_0 = %.1f", speed_test[0]);
+      break;
+    case 'c':
+      speed_test[1] += 1.0;
+      printf("speed_1 = %.1f", speed_test[1]);
+      break;
+    case 'v':
+      speed_test[1] -= 1.0;
+      printf("speed_2 = %.1f", speed_test[2]);
+      break;
+    case 'b':
+      speed_test[2] += 1.0;
+      printf("speed_2 = %.1f", speed_test[2]);
+      break;
+    case 'n':
+      speed_test[2] -= 1.0;
       break;
     default:
       break;

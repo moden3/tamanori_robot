@@ -108,4 +108,9 @@ int en_mode = 0;
 
 // 制御周期のループ
 void EncoderLoop(){
+    readangle();    // BNoから回転を読む
+    set_spin();     // ボールの回転角速度を決める
+    calc_wheelspeed();  // ボールの角速度からタイヤの角速度を求める
+    //motor_pid(wheelspeed);    // モータをPID制御で動かす
+    motor_pid(speed_test);
 }

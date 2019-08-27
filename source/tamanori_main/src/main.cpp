@@ -25,6 +25,7 @@ void Initialize(){
   pc.attach(Keyboard, Serial::RxIrq); // ボタンを押したときの処理
 }
 
+
 void MainLoop(){
   switch(en_mode){
     case 1:
@@ -35,6 +36,9 @@ void MainLoop(){
       break;
     case 3:
       pc.printf("delta_stock = %.1f, : %.1f, : %.1f\n",delta_stock[0],delta_stock[1],delta_stock[2]);
+      break;
+    case 4:
+      pc.printf("rot_vec = %.1f, : %.1f : %.1f :: %.1f\n", rotvector[0], rotvector[1], rotvector[2], rotvector[3]);
       break;
   }
 }

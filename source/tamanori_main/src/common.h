@@ -6,6 +6,8 @@
 
 #include <mbed.h>
 
+#define PI 3.14159265358979
+
 // interface.cpp
 extern Serial pc;
 extern InterruptIn button;
@@ -28,6 +30,18 @@ void encoder_init();
 void EncoderLoop();//50000μsおきに実行される　エンコーダの読み取りやそこから制御を与えるコードをかく
 
 // anglecontrol.cpp
+extern double rotvector[4];
 void bno_init();
+void readangle();
+void set_spin();
+
+// toritu.cpp
+extern double omegavec[3];
+extern double wheelspeed[3];
+void calc_wheelspeed();
+
+// motor_PID
+extern double speed_test[3];
+void motor_pid(double speedref[3]);
 
 #endif

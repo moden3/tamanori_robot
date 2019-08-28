@@ -127,6 +127,7 @@ HEADの状態とステージングの状態の差を確認
 "git branch -a"でリモート(追跡)とローカルブランチの両方を表示
 "git branch -d <ブランチ名>"でブランチを削除
 "git push --delete origin <ブランチ名>"又は"git push origin :<ブランチ名>": リモートブランチを削除
+"git branch -m <古いブランチ名> <新しいブランチ名>"でブランチ名を変更
 
 ・git checkout <ブランチ名>
 作業するブランチを切り替える

@@ -33,7 +33,7 @@ int count_old[3] = {0,0,0};
 // カウント数の差分を記録
 int delta_now[3] = {0,0,0};
 // 過去の差分データに対して現在のデータが影響する割合を指定
-#define STOCK_RATE 0.40
+#define STOCK_RATE 0.30
 double delta_stock[3] = {0,0,0};
 
 // A相が立ち上がった時の処理
@@ -108,9 +108,9 @@ int en_mode = 0;
 
 // 制御周期のループ
 void EncoderLoop(){
-    readangle();    // BNoから回転を読む
+    //readangle();    // BNOから回転を読む(main_loopに移行)
     set_spin();     // ボールの回転角速度を決める
     calc_wheelspeed();  // ボールの角速度からタイヤの角速度を求める
-    //motor_pid(wheelspeed);    // モータをPID制御で動かす
-    motor_pid(speed_test);
+    motor_pid(wheelspeed);    // モータをPID制御で動かす
+    //motor_pid(speed_test);
 }

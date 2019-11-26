@@ -33,7 +33,6 @@ int count_old[3] = {0,0,0};
 // カウント数の差分を記録
 int delta_now[3] = {0,0,0};
 // 過去の差分データに対して現在のデータが影響する割合を指定
-#define STOCK_RATE 0.30
 double delta_stock[3] = {0,0,0};
 
 // A相が立ち上がった時の処理
@@ -56,26 +55,6 @@ void en2_rise(){
         count_now[2]--;
 }
 
-// A相が立ち下がった時の処理
-void en0_fall(){
-    if(encoder[0][1]==1)
-        count_now[0]--;
-    else
-        count_now[0]++;
-}
-void en1_fall(){
-    if(encoder[1][1]==1)
-        count_now[1]--;
-    else
-        count_now[1]++;
-}
-void en2_fall(){
-    if(encoder[2][1]==1)
-        count_now[2]--;
-    else
-        count_now[2]++;
-}
-
 // カウント速度を記録
 void calc_speed(){
     for(int i=0;i<3;i++){
@@ -84,8 +63,8 @@ void calc_speed(){
         // count_oldの更新
         count_old[i] = count_now[i];
         // カウント速度の平滑化
-        delta_stock[i] = (double)delta_now[i]*STOCK_RATE
-                        +delta_stock[i]*(1-STOCK_RATE);
+        delta_stock[i] = (double)delta_now[i]*EN_STOCK_RATE
+                        +delta_stock[i]*(1.0-EN_STOCK_RATE);
     }
     // 制御周期のループ
     EncoderLoop();
@@ -97,14 +76,7 @@ void encoder_init(){
     switchevent[0].rise(en0_rise);
     switchevent[1].rise(en1_rise);
     switchevent[2].rise(en2_rise);
-    //switchevent[0].fall(en0_rise);
-    //switchevent[1].fall(en1_rise);
-    //switchevent[2].fall(en2_rise);
 }
-
-// PC表示用のモード
-// 0:表示なし,1:count_now,2:delta_now,3:delta_stock
-int en_mode = 0;
 
 // 制御周期のループ
 void EncoderLoop(){
@@ -112,5 +84,6 @@ void EncoderLoop(){
     set_spin();     // ボールの回転角速度を決める
     calc_wheelspeed();  // ボールの角速度からタイヤの角速度を求める
     motor_pid(wheelspeed);    // モータをPID制御で動かす
-    //motor_pid(speed_test);
+
+    //motor_pid(speed_test);    // モータ動作チェック用
 }
